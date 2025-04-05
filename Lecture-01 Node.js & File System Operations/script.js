@@ -1,75 +1,81 @@
-const fs = require('node:fs');
+// Node.js File System (fs) 
 
-// fs.writeFile('hello.txt', 'Hello World! i am here to learn Node.js', function(err){
+const fs = require('node:fs'); // Import the File System module
+
+// 1. Write to a file (creates or overwrites)
+// fs.writeFile('hello.txt', 'Hello World! I am here to learn Node.js', function(err){
 //     if (err) console.log(err);
-//     else console.log('done!');
-// })
-
-
-
-// fs.appendFile('hello.txt', '🎍🎍🎍🎍🎍🎍gift ', function(err){
-//     if (err) console.log(err);
-//     else console.log('done!');
-// })
-
-// fs.rename('hello.txt', 'data.txt', function(err){
-//     if (err) console.log(err);
-//     else console.log('done!');
-// })
-
-
-// fs.copyFile('./Lecture-01 Node.js & File System Operations/Copy/test.txt', './Lecture-02 Learn About NPM/bro.txt', function(err){
-//     if (err) console.log(err.message); //to get error in written format use err.message
-//     else console.log('done!');
-// })
-
-// fs.unlink('./Lecture-01 Node.js & File System Operations/Copy/bro.txt', function(err){
-//     if (err) console.log(err);
-//     else console.log('done!');
-// })
-
-// fs.rm( './Lecture-01 Node.js & File System Operations/Copy',{recursive:true}, function(err){  
-//     if (err) console.log(err);
-//     else console.log('removed!');
-// })
-
-
-// fs.mkdir('./Lecture-01 Node.js & File System Operations/Copy', function(err){
-//     if (err) console.log(err);                                                      //folder creation
-//     else console.log("folder createrd!");
-// } )
-
-
-// fs.access('./Lecture-01 Node.js & File System Operations/Copy', function(err){ //check if the file or folder is present or not
-//     if (err) console.log(err.message); //if not present it will throw an error
-//     else console.log("present!");
-// })
-// fs.readdir('./Lecture-01 Node.js & File System Operations/Copy', function (err, files) {
-//     if (err) console.log(err);
-//     else console.log(files);     //to get the files in the directory
+//     else console.log('File created or overwritten successfully!');
 // });
 
-// fs.readFile('./Lecture-01 Node.js & File System Operations/Copy/file.txt', 'utf-8', function(err, data){
+// 2. Append to a file
+// fs.appendFile('hello.txt', '🎍🎍🎍🎍🎍🎍gift ', function(err){
 //     if (err) console.log(err);
-//     else console.log(data);            //to get the content of the file
-// })
+//     else console.log('Content appended!');
+// });
 
-// fs.stat('./Lecture-01 Node.js & File System Operations/Copy/file.txt', function(err, stats){
+// 3. Rename a file
+// fs.rename('hello.txt', 'data.txt', function(err){
 //     if (err) console.log(err);
-//     else console.log(stats);            //to get the stats of the file
-// })
+//     else console.log('File renamed!');
+// });
 
-// fs.watch  it will watch the file and if any changes are made it will show the changes in the console
+// 4. Copy a file
+// fs.copyFile('./source/test.txt', './destination/bro.txt', function(err){
+//     if (err) console.log(err.message);
+//     else console.log('File copied!');
+// });
 
-
-// fs.watch('./Lecture-01 Node.js & File System Operations/Copy/file.txt', function(err, data){
+// 5. Delete a file
+// fs.unlink('./destination/bro.txt', function(err){
 //     if (err) console.log(err);
-//     else console.log(data);            //to get the stats of the file
-// })
+//     else console.log('File deleted!');
+// });
 
-fs.watchFile('./Lecture-01 Node.js & File System Operations/Copy/file.txt', function(err, data){
-    if (err) console.log(err);
-    else console.log(data);            //to get the stats of the file
+// 6. Remove a folder recursively
+// fs.rm('./some-folder', { recursive: true }, function(err){
+//     if (err) console.log(err);
+//     else console.log('Folder removed!');
+// });
 
-})
+// 7. Create a folder
+// fs.mkdir('./new-folder', function(err){
+//     if (err) console.log(err);
+//     else console.log("Folder created!");
+// });
 
+// 8. Check if file/folder exists
+// fs.access('./some-folder', function(err){
+//     if (err) console.log('Not found:', err.message);
+//     else console.log("It exists!");
+// });
+
+// 9. Read folder contents
+// fs.readdir('./some-folder', function (err, files) {
+//     if (err) console.log(err);
+//     else console.log('Files:', files);
+// });
+
+// 10. Read file content
+// fs.readFile('./file.txt', 'utf-8', function(err, data){
+//     if (err) console.log(err);
+//     else console.log('File content:', data);
+// });
+
+// 11. Get file stats/info
+// fs.stat('./file.txt', function(err, stats){
+//     if (err) console.log(err);
+//     else console.log('Stats:', stats);
+// });
+
+// 12. Watch file for changes (event-driven)
+// fs.watch('./file.txt', function(eventType, filename){
+//     console.log(`File ${filename} changed. Event: ${eventType}`);
+// });
+
+// 13. Watch file with polling
+fs.watchFile('./file.txt', function(curr, prev){
+    console.log('File changed:');
+    console.log('Previous Modified Time:', prev.mtime);
+    console.log('Current Modified Time:', curr.mtime);
+});
