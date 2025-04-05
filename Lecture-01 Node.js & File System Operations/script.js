@@ -67,9 +67,9 @@ const fs = require('node:fs');
 //     else console.log(data);            //to get the stats of the file
 // })
 
-// fs.watchFile('./Lecture-01 Node.js & File System Operations/Copy/file.txt', function(err, data){
-//     if (err) console.log(err);
-//     else console.log(data);            //to get the stats of the file
+fs.watchFile('./Lecture-01 Node.js & File System Operations/Copy/file.txt', function(err, data){
+    if (err) console.log(err);
+    else console.log(data);            //to get the stats of the file
 
-// })
+})
 
