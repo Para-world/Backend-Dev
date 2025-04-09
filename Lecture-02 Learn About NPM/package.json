@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9"
+  },
+  "name": "lecture-02-learn-about-npm",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "devWorld": "echo \"\u001b[36mRunning tests...\u001b[39m\"&& node script.js",
+    "say": "echo \"Thank you!😎✌️\"",
+    "jatin": "echo \"Jatin is a good boy😎\"",
+    "para": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Deepak kumar",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,14 @@
+Form handling and working with the form data;
+--Handle backend process of forms and making sure the data coming form any frontend lib,fw,templating engines,we still handle it the same way;
+
+
+
+
+-install a pacakage called cookie parser to parse the cookies in the request header and make it available in the req.cookies object.
+npm install cookie-parser --save
+
+
+
+🤔What is cookies or sessions?
+- Cookies are small pieces of data that are stored on the client-side (browser) and sent to the server with each request. They can be used to store user preferences, authentication tokens, and other information.
+- Sessions are server-side storage mechanisms that allow you to store user-specific data for the duration of a user's visit to your website. Sessions are typically identified by a unique session ID, which is stored in a cookie on the client-side. When a user makes a request, the server can look up the session data using the session ID.

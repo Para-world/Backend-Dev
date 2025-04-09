@@ -1,0 +1,20 @@
+🤔What is express.js?
+   Express.js is a web application framework for Node.js. It is designed for building web applications and APIs. It provides a robust set of    features for web and mobile applications, including routing, middleware support, and template engines. Express.js is known for its simplicity and flexibility, allowing developers to create server-side applications quickly and efficiently.
+🤔Where we find this express.js?
+   express.js was a npm package.
+🤔How to install express.js?
+   You can install express.js using npm by running the command: `npm install express`.
+🤔What express.js does and form where it starts working in backned?
+  Everything form reciving request to sending response is done by express.js. It starts working from the point where the server is created and starts listening for incoming requests. When a request is received, express.js processes it and sends back a response.
+
+🤔What is middleware in express.js?
+   Middleware in express.js is a function that has access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. It can perform operations on the request and response objects, end the request-response cycle, or call the next middleware function in the stack.
+
+
+   🤔Request and response handling;
+   In express.js, request and response handling is done using middleware functions. When a request is received, it goes through a series of middleware functions that can modify the request and response objects, perform operations, and send a response back to the client. The request object contains information about the incoming request, while the response object is used to send a response back to the client.
+
+
+   
+  
+    

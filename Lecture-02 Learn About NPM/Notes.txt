@@ -1,0 +1,19 @@
+we can install dependencies in two ways :
+.Dev Dependencies : which is only used in development environment, to install this dependencies we use --save-dev flag.
+                            example : npm install nodemon --save-dev
+.Production Dependencies : which is used in both development and production environment, to install this dependencies we use --save flag.
+                            example : npm install express --save
+
+
+.we use default scripts in package.json file to run the project, we can add our own scripts in package.json file.
+example : "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
++    "devWorld":"echo \"\u001b[36mRunning tests...\u001b[39m\"&& node script.js"
+}
+
+we can run the script using command : npm run devWorld
+// we can also run the script using command : npm run devWorld  
+  }
+// we can also run the script using command : npm run devWorld
+
