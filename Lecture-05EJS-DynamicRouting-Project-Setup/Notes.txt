@@ -1,0 +1,15 @@
+.initizle project with npm for this run command npm init -y✅
+// install express for this run command npm i express ✅
+
+
+setting up parsers for form✅
+
+setting up ejs for ejs pages for this run command npm i ejs✅
+  set up ejs aa a view engine ✅
+
+setting up public static files
+
+.dynamic routing{first off all go on browser and create a url that you want to use for dynamic routing like this http://localhost:3000/user/1 then go to your app.js file and create a route for this url like this app.get('/user/:id', (req, res) => { res.send('User ID: ' + req.params.id); }); then go to your browser and type the url that you created and you will see the user id that you created in the url.}✅
+         dynamic routing
+         how to get data coming from frontend at backend route
+
