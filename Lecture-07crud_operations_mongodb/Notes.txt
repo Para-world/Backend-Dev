@@ -1,0 +1,19 @@
+.mongodb installation and setup 
+.mongodb connection 
+.schema  
+.model 
+.crud operations
+
+
+
+
+
+
+
+
+
+
+//change index.js to app.js in package.json file
+//run command npm init -y to create package.json file
+//run command npm install express mongoose 
+
