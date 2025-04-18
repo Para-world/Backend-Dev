@@ -18,31 +18,50 @@ app.get('/', (req, res) => {
 
 app.get('/read', async (req, res) => {
 
-    let users = await userModel.find();
+  let users = await userModel.find();
 
-  res.render('read', {users});
+  res.render('read', { users });
+});
+
+
+app.get('/edit/:userid', async (req, res) => {
+
+  let users = await userModel.findOne({ _id: req.params.userid });
+
+  res.render('edit', { users });
+
+});
+
+
+app.post('/update/:userid', async (req, res) => {
+
+  let { image, name, email } = req.body;
+
+  let user = await userModel.findOneAndUpdate({ _id: req.params.userid }, { name, image, email }, { new: true });
+  res.redirect('/read');
+
 });
 
 app.post('/create', async (req, res) => {
-    let {name, email, image} = req.body;
+  let { name, email, image } = req.body;
 
-   let createdUser = await userModel.create({ 
-        name,
-        email,
-        image
+  let createdUser = await userModel.create({
+    name,
+    email,
+    image
 
-    });
-
-    res.redirect("/read");
-
-
-    
   });
+
+  res.redirect("/read");
+
+
+
+});
 
 
 app.get('/delete/:id', async (req, res) => {
-    let users = await userModel.findOneAndDelete({_id: req.params.id});
-    res.redirect('/read');
+  let users = await userModel.findOneAndDelete({ _id: req.params.id });
+  res.redirect('/read');
 });
 
 
