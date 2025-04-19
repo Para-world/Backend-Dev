@@ -1,0 +1,29 @@
+.Authentication and Authorization
+// 1. Authentication is the process of verifying the identity of a user or system.
+// 2. Authorization is the process of determining whether a user or system has permission to perform a specific action or access a resource.
+// 3. Authentication is about who you are, while authorization is about what you can do.
+// 4. Authentication typically involves the use of credentials such as usernames and passwords, while authorization involves the use of access control lists (ACLs) or role-based access control (RBAC).
+
+
+.Cookies and Sessions
+// 1. Cookies are small pieces of data stored on the client-side (browser) that can be used to remember user preferences or session information.
+// 2. Sessions are server-side storage mechanisms that allow you to store user data across multiple requests.
+// 3. Cookies are sent with every HTTP request, while sessions are typically identified by a session ID stored in a cookie or URL parameter.
+// 4. Cookies can be set to expire after a certain time, while sessions usually expire after a period of inactivity or when the user logs out.  
+
+.what should be learn Here?
+.how to set cookies.
+.what is bcrypt and we use it for password encryption or hashing.
+.how to use bcrypt for password hashing and verification.
+.What is JWT (JSON Web Token) and how to use it for authentication and how to store data in jwt, how to to get data form jwt.
+
+
+     ...to do this thing run some commands in terminal.    npm init -y
+// 1. npm install bcrypt
+// 2. npm install jsonwebtoken
+// 3. npm install express
+// 4. npm install cookie-parser
+..change the name of the file to app.js 
+                                                                       ///$2b$10$ihR2BEWs5GNSfBW5Pk1imO1W.jkL0yJFhdfc8asMtHXhrVuC.RG/q
+                                                                       ///hatbenikal
+
