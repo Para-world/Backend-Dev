@@ -1,0 +1,8 @@
+..Create user account
+..mongoose
+..schema
+..model
+..bcrypt usercreate -> password -> hash
+..jwt token ->cookie 
+
+..login -> token -> decrypt -> email

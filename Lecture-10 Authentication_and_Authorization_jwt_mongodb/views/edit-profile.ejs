@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
+        <div class="max-w-2xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-3xl">Edit Profile</h3>
+                <a href="/dashboard" class="px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition">Back to Dashboard</a>
+            </div>
+            
+            <!-- Flash Messages -->
+            <% if(messages.success && messages.success.length > 0) { %>
+                <div class="bg-green-900/30 border border-green-500 p-4 rounded-md mb-6">
+                    <p><%= messages.success %></p>
+                </div>
+            <% } %>
+            
+            <% if(messages.error && messages.error.length > 0) { %>
+                <div class="bg-red-900/30 border border-red-500 p-4 rounded-md mb-6">
+                    <p><%= messages.error %></p>
+                </div>
+            <% } %>
+            
+            <!-- Profile Form -->
+            <div class="bg-zinc-800 p-6 rounded-lg mb-8">
+                <h4 class="text-xl mb-4">Update Profile Information</h4>
+                <form method="post" action="/update-profile" id="profileForm" class="space-y-4">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    
+                    <div>
+                        <label for="username" class="block mb-1">Username</label>
+                        <input id="username" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="text" name="username" value="<%= user.username %>" required>
+                        <span class="text-red-500 text-sm hidden" id="usernameError"></span>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block mb-1">Email</label>
+                        <input id="email" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="email" name="email" value="<%= user.email %>" required>
+                        <span class="text-red-500 text-sm hidden" id="emailError"></span>
+                    </div>
+                    
+                    <div>
+                        <label for="age" class="block mb-1">Age</label>
+                        <input id="age" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="number" name="age" value="<%= user.age %>" required>
+                        <span class="text-red-500 text-sm hidden" id="ageError"></span>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition">
+                            Update Profile
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Change Password Form -->
+            <div class="bg-zinc-800 p-6 rounded-lg">
+                <h4 class="text-xl mb-4">Change Password</h4>
+                <form method="post" action="/change-password" id="passwordForm" class="space-y-4">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    
+                    <div>
+                        <label for="currentPassword" class="block mb-1">Current Password</label>
+                        <input id="currentPassword" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="password" name="currentPassword" required>
+                        <span class="text-red-500 text-sm hidden" id="currentPasswordError"></span>
+                    </div>
+                    
+                    <div>
+                        <label for="newPassword" class="block mb-1">New Password</label>
+                        <input id="newPassword" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="password" name="newPassword" required>
+                        <span class="text-red-500 text-sm hidden" id="newPasswordError"></span>
+                    </div>
+                    
+                    <div>
+                        <label for="confirmPassword" class="block mb-1">Confirm New Password</label>
+                        <input id="confirmPassword" class="w-full px-3 py-2 rounded-md bg-transparent border-2 border-zinc-700 outline-none focus:border-blue-500" 
+                            type="password" name="confirmPassword" required>
+                        <span class="text-red-500 text-sm hidden" id="confirmPasswordError"></span>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition">
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Client-side form validation
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            let valid = true;
+            
+            // Username validation
+            const username = document.getElementById('username');
+            const usernameError = document.getElementById('usernameError');
+            if (username.value.trim().length < 3) {
+                usernameError.textContent = 'Username must be at least 3 characters';
+                usernameError.classList.remove('hidden');
+                valid = false;
+            } else {
+                usernameError.classList.add('hidden');
+            }
+            
+            // Email validation
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                emailError.textContent = 'Please enter a valid email address';
+                emailError.classList.remove('hidden');
+                valid = false;
+            } else {
+                emailError.classList.add('hidden');
+            }
+            
+            // Age validation
+            const age = document.getElementById('age');
+            const ageError = document.getElementById('ageError');
+            if (age.value < 1 || age.value > 120) {
+                ageError.textContent = 'Please enter a valid age (1-120)';
+                ageError.classList.remove('hidden');
+                valid = false;
+            } else {
+                ageError.classList.add('hidden');
+            }
+            
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
+        
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            let valid = true;
+            
+            // Current password validation
+            const currentPassword = document.getElementById('currentPassword');
+            const currentPasswordError = document.getElementById('currentPasswordError');
+            if (currentPassword.value.trim().length < 1) {
+                currentPasswordError.textContent = 'Please enter your current password';
+                currentPasswordError.classList.remove('hidden');
+                valid = false;
+            } else {
+                currentPasswordError.classList.add('hidden');
+            }
+            
+            // New password validation
+            const newPassword = document.getElementById('newPassword');
+            const newPasswordError = document.getElementById('newPasswordError');
+            if (newPassword.value.trim().length < 6) {
+                newPasswordError.textContent = 'New password must be at least 6 characters';
+                newPasswordError.classList.remove('hidden');
+                valid = false;
+            } else {
+                newPasswordError.classList.add('hidden');
+            }
+            
+            // Confirm password validation
+            const confirmPassword = document.getElementById('confirmPassword');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+            if (confirmPassword.value !== newPassword.value) {
+                confirmPasswordError.textContent = 'Passwords do not match';
+                confirmPasswordError.classList.remove('hidden');
+                valid = false;
+            } else {
+                confirmPasswordError.classList.add('hidden');
+            }
+            
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

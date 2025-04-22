@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
+        <div class="max-w-4xl mx-auto">
+            <!-- Flash Messages -->
+            <% if(messages.success && messages.success.length > 0) { %>
+                <div class="bg-green-900/30 border border-green-500 p-4 rounded-md mb-6">
+                    <p><%= messages.success %></p>
+                </div>
+            <% } %>
+
+            <% if(messages.error && messages.error.length > 0) { %>
+                <div class="bg-red-900/30 border border-red-500 p-4 rounded-md mb-6">
+                    <p><%= messages.error %></p>
+                </div>
+            <% } %>
+
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-3xl">Welcome, <%= user.username %></h3>
+                <div class="flex space-x-4">
+                    <a href="/edit-profile" class="px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition">Edit Profile</a>
+                    <a href="/logout" class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 transition">Logout</a>
+                </div>
+            </div>
+
+            <div class="bg-zinc-800 p-6 rounded-lg">
+                <h4 class="text-xl mb-4">Your Profile</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-2">
+                        <span class="font-bold">Username:</span> <%= user.username %>
+                    </div>
+                    <div class="mb-2">
+                        <span class="font-bold">Email:</span> <%= user.email %>
+                    </div>
+                    <div class="mb-2">
+                        <span class="font-bold">Age:</span> <%= user.age %>
+                    </div>
+                    <div class="mb-2">
+                        <span class="font-bold">Account Created:</span>
+                        <%= new Date(user._id.getTimestamp()).toLocaleString() %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
